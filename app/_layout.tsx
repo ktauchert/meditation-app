@@ -1,7 +1,6 @@
 import TimerProvider from '@/context/TimerContext';
 import { useFonts } from 'expo-font';
 import { Slot, SplashScreen, Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react';
 
 export default function RootLayout() {

@@ -18,16 +18,16 @@ export default function App() {
         <AppGradient colors={['rgba(0,0,0,0.4)', 'rgba(0,0,0,0.8)']}>
           <View className="">
             <Text className="text-center text-4xl text-white mt-4">
-              Willkommen zu
+              Welcome to
             </Text>
-            <Text className="font-medium text-center text-4xl text-white ">Einfach medititeren</Text>
-            <Text className="text-center text-xl text-white mt-2">
-              Die einfache Art in den Tag zu starten.
+            <Text className="font-bold text-center text-4xl text-cyan-400 italic mt-5">Just Meditate</Text>
+            <Text className="text-center text-xl text-white mt-10">
+              The simple way to start the day
             </Text>
           </View>
           <View>
             <CustomButton
-              onPress={() => router.push("/nature-meditation")} title="Fang an"
+              onPress={() => router.push("/nature-meditation")} title="Begin"
             />
           </View>
 

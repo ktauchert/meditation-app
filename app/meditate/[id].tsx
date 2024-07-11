@@ -8,15 +8,17 @@ import CustomButton from "@/components/CustomButton";
 import { Audio } from "expo-av";
 import { MEDITATION_DATA, AUDIO_FILES } from "@/constants/mediation-data";
 import { TimerContext } from "@/context/TimerContext";
+import CheckBox from "@react-native-community/checkbox";
 
 const Meditate = () => {
   const { id } = useLocalSearchParams();
-  const {duration: secondsRemaining, setDuration} = useContext(TimerContext);
+  const { duration: secondsRemaining, setDuration } = useContext(TimerContext);
   // const [secondsRemaining, setSecondsRemaining] = useState<number>(10);
   const [isMeditating, setIsMeditating] = useState<boolean>(false);
   const [audioSound, setAudioSound] = useState<Audio.Sound>();
 
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
+  const [musicOn, setMusicOn] = useState<boolean>(true);
 
   useEffect(() => {
     let timerId: NodeJS.Timeout;
@@ -56,7 +58,7 @@ const Meditate = () => {
 
     const status = await sound?.getStatusAsync();
 
-    if (status?.isLoaded && !isPlayingAudio) {
+    if (status?.isLoaded && !isPlayingAudio && musicOn) {
       await sound.playAsync();
       setIsPlayingAudio(true);
     } else {
@@ -74,8 +76,9 @@ const Meditate = () => {
     return sound;
   };
 
-  const handleDurationBtn = () => { 
-    if(isMeditating) toggleMeditationSessionStatus();
+  const handleDurationBtn = () => {
+    if (isMeditating) toggleMeditationSessionStatus();
+    setDuration(5 * 60)
 
     router.push('/(model)/set-duration');
   };
@@ -108,8 +111,14 @@ const Meditate = () => {
           </View>
           <View className="mb-0">
             <CustomButton
+              title={musicOn ? 'Music on' : 'Music off'}
+              onPress={() => setMusicOn(!musicOn)}
+              pushed={!musicOn}
+            />
+            <CustomButton
               title={isMeditating ? "Stop Meditation" : "Start Meditation"}
               onPress={toggleMeditationSessionStatus}
+              containerStyles="mt-3"
             />
             <CustomButton
               title={"Duration"}
