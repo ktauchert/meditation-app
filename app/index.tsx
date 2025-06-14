@@ -1,4 +1,5 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
+// @ts-ignore
 import beachImage from '@/assets/meditation-images/beach.webp';
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "expo-router";
